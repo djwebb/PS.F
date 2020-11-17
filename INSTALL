@@ -1,0 +1,84 @@
+!
+!======================================================================
+!
+!    Copyright 2020  David J. Webb
+!
+!    This file is part of PS.F.
+!
+!    PS.F is free software: you can redistribute it and/or modify
+!    it under the terms of the GNU General Public License as published by
+!    the Free Software Foundation, either version 3 of the License, or
+!    (at your option) any later version.
+!
+!    PS.F is distributed in the hope that it will be useful,
+!    but WITHOUT ANY WARRANTY; without even the implied warranty of
+!    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+!    GNU General Public License for more details.
+!
+!    You should have received a copy of the GNU General Public License
+!    along with PS.F.  If not, see <https://www.gnu.org/licenses/>.
+!
+!======================================================================
+!
+!  File: INSTALL
+!
+!======================================================================
+!
+
+Installation
+============
+
+The file ps.F first needs to be compiled separately to generate tme module file "ps.mod".  Any plotting program to use the library can then be compiled, either by adding the file ps.o directly or by placing ps.o in a library.
+
+
+1.  Case without using library
+==============================
+
+Using a linux bash shell with the gfortran compiler:
+
+  gfortran -c ps.F                            <- generate ps.o and ps.mod
+  gfortran -o plot1 plot1.F ps.o              <- generate plot1
+  ./plot1                                     <- run plot1
+
+2.  Compile the routines as a library
+=====================================
+
+Using a linux bash shell with the gfortran compiler:
+
+  gfortran -c ps.F                            <- generate ps.o and ps.mod
+  ar -crv libps.a ps.o                        <- generate library libps.a
+
+  sudo cp libps.a  LIB      <= LIB a suitable library directory i.e. /usr/local/lib64
+  sudo cp ps.mod   INC      <= INC a suitable include directory, i.e. /usr/local/include
+
+If the files are copied to the users own library and include directories the sudo command at the start of these line should be left out.  If /home/me is the users home directory then the value of LIB would be /home/me/lib64 and INC would be /home/me/include
+
+A plotting program should always use the 'use PS' line.  If a library is used, the compile command needs '-lps' added:
+
+   gfortran -o plot1 plot1.F -lps
+   ./plot1
+
+If the LIB and INC directories are not standard ones, they may need to be specified as part of the compile command:
+   gfortran -o plot1 plot1.F -I/home/me/include -L/home/nme/lib64
+
+3.  The plotting program
+
+This should have the form:
+------------------------------------
+      program plot1
+      use ps
+      implicit none
+
+      ...  part of program
+
+      call psinit("a4h","POST.eps")
+
+      ...  plotting commands
+
+      call showpage
+      call psclose
+
+      ... rest of program
+
+      end program plot1
+----------------------------------
