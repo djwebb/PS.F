@@ -1,10 +1,12 @@
       program plot1
 !
-!======================================================================
+!=======================================================================
 !
+!    File: ps.F
 !    Copyright 2020  David J. Webb
 !
 !    This file is part of PS.F.
+!    Released under licence GPL-3.0-or-later
 !
 !    PS.F is free software: you can redistribute it and/or modify
 !    it under the terms of the GNU General Public License as published by
@@ -19,10 +21,8 @@
 !    You should have received a copy of the GNU General Public License
 !    along with PS.F.  If not, see <https://www.gnu.org/licenses/>.
 !
-!======================================================================
+!=======================================================================
 !23456789012345678901234567890123456789012345678901234567890123456789012
-!
-!  File: plot1.F
 !
 !  Simple compile:
 !
