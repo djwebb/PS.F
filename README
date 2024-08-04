@@ -266,10 +266,10 @@ For more information see the comments and the fortran code itself in file "ps.F"
            !        -1 backward transformation
 
     subroutine mercator(x,y,i)
-           !  Subroutine used for the 'orthographic' transformation.
+           !  Subroutine used for the 'mercator' transformation.
 
     subroutine ortho(x,y,i)
-           !  Subroutine used for the 'mercator' transformation.
+           !  Subroutine used for the 'orthographic' transformation.
 
     subroutine set_ortho(rlon1,rlat1,ideg)
            !  The orthographic projection uses parallel lines to project the surface of a sphere onto a plane through its centre at right angles to the line of sight.
